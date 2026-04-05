@@ -5,24 +5,26 @@
 
 import API from './api.js';
 
+const unwrapResponse = (response) => response.data ?? response;
+
 const register = async (name, email, password) => {
   const response = await API.post('/auth/register', { name, email, password });
-  return response.data;
+  return unwrapResponse(response);
 };
 
 const emailLogin = async (email, password) => {
   const response = await API.post('/auth/login', { email, password });
-  return response.data;
+  return unwrapResponse(response);
 };
 
 const googleLogin = async (credential) => {
   const response = await API.post('/auth/google', { credential });
-  return response.data;
+  return unwrapResponse(response);
 };
 
 const getMe = async () => {
   const response = await API.get('/auth/me');
-  return response.data;
+  return unwrapResponse(response);
 };
 
 const logout = async () => {
